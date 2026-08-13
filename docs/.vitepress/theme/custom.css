@@ -1,0 +1,22 @@
+/* Every screenshot is captured in both themes; the reader sees the one they chose. */
+.shot {
+    margin: 1.25rem 0 1.75rem;
+}
+
+.shot img {
+    border: 1px solid var(--vp-c-divider);
+    border-radius: 12px;
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+
+html.dark .shot-light,
+html:not(.dark) .shot-dark {
+    display: none;
+}
+
+/* A method name broken across two lines reads as two names. */
+.vp-doc td code {
+    white-space: nowrap;
+}

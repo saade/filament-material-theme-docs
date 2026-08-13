@@ -1,0 +1,15 @@
+{
+    "name": "filament-material-theme-docs",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vitepress dev docs",
+        "build": "vitepress build docs",
+        "preview": "vitepress preview docs",
+        "screenshots": "node docs-assets/screenshots/script.js"
+    },
+    "devDependencies": {
+        "puppeteer": "^24.0.0",
+        "vitepress": "^1.6.0"
+    }
+}
