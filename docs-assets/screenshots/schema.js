@@ -52,9 +52,16 @@ export default {
         selector: '.shot-buttons-fab',
         tight: true,
     },
+    /* Its own field label sits 8dp above it, so the frame has to stop short of that. */
     'buttons/segmented': {
         url: 'components/buttons',
         selector: '.shot-buttons-segmented',
+        padding: 4,
+    },
+    'buttons/segmented-multiple': {
+        url: 'components/buttons',
+        selector: '.shot-buttons-segmented-multiple',
+        padding: 4,
     },
     'buttons/grouped': {
         url: 'components/buttons',

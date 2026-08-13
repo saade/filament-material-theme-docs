@@ -22,6 +22,8 @@ const PASSWORD = process.env.AUTH_PASSWORD ?? 'Fil@ment1sTh3Go@t!'
 
 const THEMES = ['light', 'dark']
 const VIEWPORT = { width: 1440, height: 900, deviceScaleFactor: 2 }
+
+/* Overridable per entry, for a control that sits closer than this to its own label. */
 const PADDING = 16
 
 /* A capture is of a resting component, so nothing may be part-way through a transition. */
@@ -71,7 +73,7 @@ async function openPage(browser, theme) {
  * Filament leaves a hidden loading indicator inside every button, so a box with
  * no size is not evidence of anything and is dropped.
  */
-async function clipFor(page, selector, tight) {
+async function clipFor(page, selector, tight, padding) {
     return page.evaluate((selector, tight, padding) => {
         const element = document.querySelector(selector)
         const width = element.getBoundingClientRect().width
@@ -96,7 +98,7 @@ async function clipFor(page, selector, tight) {
             width: box.right - box.left + padding * 2,
             height: box.bottom - box.top + padding * 2,
         }
-    }, selector, tight, PADDING)
+    }, selector, tight, padding)
 }
 
 const byUrl = Object.entries(schema).reduce((groups, [file, options]) => {
@@ -133,7 +135,12 @@ for (const theme of THEMES) {
 
             await page.screenshot({
                 path: target,
-                clip: await clipFor(page, options.selector, options.tight ?? false),
+                clip: await clipFor(
+                    page,
+                    options.selector,
+                    options.tight ?? false,
+                    options.padding ?? PADDING,
+                ),
             })
 
             count++

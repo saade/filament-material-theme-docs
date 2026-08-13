@@ -203,7 +203,9 @@ container rather than the accent, because it is a choice, not an action.
 
 Filament renders this as a `ToggleButtons` form field; there is no theme method to call.
 
-<Shot name="buttons/segmented" alt="A single-select and a multi-select segmented button" />
+One segment at a time:
+
+<Shot name="buttons/segmented" alt="A segmented button with three options and the middle one selected" />
 
 ```php
 use Filament\Forms\Components\ToggleButtons;
@@ -213,7 +215,13 @@ ToggleButtons::make('period')
     ->inline()
     ->grouped()
     ->options(['a' => 'Day', 'b' => 'Week', 'c' => 'Month']);
+```
 
+Or several, with `->multiple()`:
+
+<Shot name="buttons/segmented-multiple" alt="A segmented button with two of its three options selected" />
+
+```php
 ToggleButtons::make('style')
     ->label('Multi select')
     ->inline()
