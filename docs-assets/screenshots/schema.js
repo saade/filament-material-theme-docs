@@ -63,6 +63,11 @@ export default {
         selector: '.shot-buttons-segmented-multiple',
         padding: 4,
     },
+    'buttons/segmented-icons': {
+        url: 'components/buttons',
+        selector: '.shot-buttons-segmented-icons',
+        padding: 4,
+    },
     'buttons/grouped': {
         url: 'components/buttons',
         selector: '.shot-buttons-grouped',

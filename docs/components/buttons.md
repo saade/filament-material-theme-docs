@@ -230,6 +230,34 @@ ToggleButtons::make('style')
     ->options(['a' => 'Bold', 'b' => 'Italic', 'c' => 'Underline']);
 ```
 
+A selected segment also takes a check mark. Filament renders no such icon, so the theme draws it
+and reserves the space for it on both sides of the label, which is what keeps the group from
+changing width as the selection moves. The check is what makes a multi-select group readable:
+without it, several tinted segments next to each other read as one long fill.
+
+### With icons
+
+Pass `->icons()` alongside the options, keyed the same way.
+
+<Shot name="buttons/segmented-icons" alt="A segmented button whose options carry icons, with the selected one showing a check" />
+
+```php
+ToggleButtons::make('layout')
+    ->label('With icons')
+    ->inline()
+    ->grouped()
+    ->options(['a' => 'List', 'b' => 'Grid', 'c' => 'Map'])
+    ->icons([
+        'a' => Heroicon::OutlinedListBullet,
+        'b' => Heroicon::OutlinedSquares2x2,
+        'c' => Heroicon::OutlinedMap,
+    ]);
+```
+
+Where a segment carries an icon of its own, the check takes that icon's place rather than sitting
+beside it. Material specifies the swap, and it means the segment keeps its width through the
+change, so nothing shifts as the selection moves along the group.
+
 `->grouped()` is what produces the connected shell. Without it the options render as separate
 buttons.
 
