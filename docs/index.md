@@ -8,14 +8,14 @@ hero:
   actions:
     - theme: brand
       text: Components
-      link: /components/buttons
+      link: /actions/buttons
     - theme: alt
       text: View on GitHub
       link: https://github.com/saade/filament-material-theme
 
 features:
   - title: Material components, not a repaint
-    details: Buttons, cards, chips, text fields, tabs, sheets and navigation are rebuilt to the shapes and measurements Material publishes, rather than tinted to look approximately right.
+    details: Actions, sections, badges, form fields, tables and navigation are rebuilt to the shapes and measurements Material publishes, rather than tinted to look approximately right.
   - title: Variants you ask for by name
     details: Material ships most components in more than one form. Each one is reached through a method on the Filament component that renders it, so a caller never carries a class string around.
   - title: Dynamic color

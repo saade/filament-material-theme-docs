@@ -75,13 +75,18 @@ async function openPage(browser, theme) {
  */
 async function clipFor(page, selector, tight, padding) {
     return page.evaluate((selector, tight, padding) => {
-        const element = document.querySelector(selector)
+        /* Several selectors frame something that is not one element, such as the
+           rail and the sheet docked against it. */
+        const elements = [selector].flat().map((one) => document.querySelector(one))
+        const element = elements[0]
         const width = element.getBoundingClientRect().width
         const boxes = tight
             ? [...element.querySelectorAll('*')]
                 .map((node) => node.getBoundingClientRect())
                 .filter((box) => box.width > 0 && box.height > 0 && box.width < width)
-            : []
+            : elements.length > 1
+                ? elements.map((node) => node.getBoundingClientRect())
+                : []
 
         const box = boxes.length
             ? {
@@ -126,9 +131,37 @@ for (const theme of THEMES) {
             throw new Error(`${url} rendered in ${isDark ? 'dark' : 'light'} while capturing ${theme}.`)
         }
 
+        /*
+         * Entries sharing a page are captured from one load. A hook breaks that,
+         * both for itself and for whatever follows it, since an opened menu is
+         * still open when the next entry is framed. So a hook reloads before it
+         * runs, and marks the page for the entry after it to reload as well.
+         */
+        let dirty = false
+
         for (const [file, options] of entries) {
-            await page.waitForSelector(options.selector)
-            await page.$eval(options.selector, (element) => element.scrollIntoView({ block: 'center' }))
+            if (options.before || dirty) {
+                await page.goto(`${BASE_URL}/${url}`, { waitUntil: 'networkidle2' })
+                await page.addStyleTag({ content: STILL })
+                dirty = false
+            }
+
+            if (options.before) {
+                await options.before(page)
+                dirty = true
+
+                /* A hook that clicked something leaves the pointer on it, and a
+                   hovered control shows its tooltip and its state layer. Unless
+                   the hover is the thing being captured. */
+                if (! options.hover) {
+                    await page.mouse.move(0, 0)
+                }
+            }
+
+            const anchor = [options.selector].flat()[0]
+
+            await page.waitForSelector(anchor)
+            await page.$eval(anchor, (element) => element.scrollIntoView({ block: 'center' }))
 
             const target = path.join(OUTPUT, theme, `${file}.png`)
             await fs.mkdir(path.dirname(target), { recursive: true })
