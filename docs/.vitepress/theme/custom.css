@@ -1,6 +1,7 @@
 /* Every screenshot is captured in both themes; the reader sees the one they chose. */
 .shot {
     margin: 1.25rem 0 1.75rem;
+    position: relative;
 }
 
 .shot img {
@@ -14,6 +15,56 @@
 html.dark .shot-light,
 html:not(.dark) .shot-dark {
     display: none;
+}
+
+/*
+ * A figure may be pinned to one theme on its own, whatever the site is set to.
+ * Doubled class because the rule above carries an `html` type selector, which
+ * outranks a single class however late it is declared.
+ */
+.shot.shot-pinned-light .shot-dark,
+.shot.shot-pinned-dark .shot-light {
+    display: none;
+}
+
+.shot.shot-pinned-light .shot-light,
+.shot.shot-pinned-dark .shot-dark {
+    display: block;
+}
+
+.shot-toggle {
+    align-items: center;
+    background-color: var(--vp-c-bg);
+    border: 1px solid var(--vp-c-divider);
+    border-radius: 999px;
+    color: var(--vp-c-text-2);
+    display: flex;
+    height: 28px;
+    inset-block-start: 8px;
+    inset-inline-end: 8px;
+    justify-content: center;
+    opacity: 0;
+    position: absolute;
+    transition:
+        opacity 0.2s ease,
+        color 0.2s ease;
+    width: 28px;
+}
+
+.shot:hover .shot-toggle,
+.shot-toggle:focus-visible {
+    opacity: 1;
+}
+
+.shot-toggle:hover {
+    color: var(--vp-c-text-1);
+}
+
+/* Touch has no hover to reveal it with. */
+@media (hover: none) {
+    .shot-toggle {
+        opacity: 1;
+    }
 }
 
 /* A method name broken across two lines reads as two names. */
