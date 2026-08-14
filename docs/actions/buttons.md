@@ -147,7 +147,7 @@ Action::make('compose')
 | `extendedFab()` | `Action` | Extended FAB, rendered as a labelled button |
 | `variant(ButtonVariant\|string)` | `Action` | Any of the above by name |
 
-Registered on the base `Action`, so `CreateAction`, `EditAction` and the rest answer to all of them.
+Registered on the base `Action`, so `CreateAction`, `EditAction` and the rest all inherit them.
 
 `md-outlined` is applied without being called to any action where `isOutlined()` is true, which is
 what makes an outlined icon button work.

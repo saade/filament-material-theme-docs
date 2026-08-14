@@ -4,7 +4,7 @@ Everything the theme adds, in one place. All of it is registered when the packag
 is nothing to import.
 
 Each set is registered on the class Filament's macro lookup starts walking parents from, which is
-what makes every subclass answer to it: `CreateAction`, `EditAction` and the rest all take the
+what makes every subclass inherit it: `CreateAction`, `EditAction` and the rest all take the
 button variants, and every form field takes the field ones.
 
 ## Actions
@@ -109,10 +109,13 @@ variable can be any case without the calling code branching.
 | `source(string\|Closure)` | `#1B48A5` | The color the whole scheme is derived from |
 | `variant(string\|Closure)` | `tonalSpot` | Which of Material's nine derivations to use |
 | `contrast(float\|Closure)` | `0.0` | `-1` reduced through `1` high |
+| `icons(bool\|Closure)` | `true` | Uses Material icons, when the set is installed |
 | `getScheme()` | | The three resolved values as a `MaterialScheme` |
+| `hasIcons()` | | Whether Material icons are wanted |
 | `getId()` | | `filament-material-theme` |
 
-Closures are evaluated per request. See [theming](/getting-started/theming).
+Closures are evaluated per request. See [theming](/getting-started/theming) and
+[icons](/getting-started/icons).
 
 ## Scheme
 

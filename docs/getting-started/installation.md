@@ -66,7 +66,8 @@ else it takes.
 
 Every Filament component is restyled as soon as the stylesheet is imported. Buttons, cards, fields,
 menus, tables, dialogs, the sidebar and the top app bar all take their Material form with no code
-changes.
+changes. Filament's own icons stay as they are unless you install the Material set; see
+[icons](/getting-started/icons).
 
 The methods documented in these pages are for the cases where Material ships a component in more
 than one form and you have to say which one you want. They are registered when the package boots,

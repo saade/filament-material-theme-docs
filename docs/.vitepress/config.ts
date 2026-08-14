@@ -28,6 +28,7 @@ export default defineConfig({
                 items: [
                     { text: 'Installation', link: '/getting-started/installation' },
                     { text: 'Theming', link: '/getting-started/theming' },
+                    { text: 'Icons', link: '/getting-started/icons' },
                 ],
             },
             {
