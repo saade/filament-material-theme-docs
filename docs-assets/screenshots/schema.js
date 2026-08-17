@@ -466,7 +466,7 @@ export default {
         selector: '.shot-slider-vertical-range',
     },
 
-    'snackbar/success': {
+    'notification/success': {
         url: 'components/snackbar',
         selector: '.fi-no-notification',
         async before(page) {
@@ -476,7 +476,7 @@ export default {
     },
     /* All four at once, since the point of the section is that only the icon
        changes with the status. */
-    'snackbar/statuses': {
+    'notification/statuses': {
         url: 'components/snackbar',
         selector: ['.fi-no-notification:first-of-type', '.fi-no-notification:last-of-type'],
         async before(page) {

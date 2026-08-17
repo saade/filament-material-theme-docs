@@ -1,7 +1,13 @@
 # Toggle buttons
 
-`grouped()` picks the shape. Left off, the options render as Material's button group; with it, as a
-segmented button.
+`ToggleButtons` renders as one of two Material components, and `grouped()` picks which. Left off,
+the options render as a **button group**, the connected group as Material 3 Expressive redrew it.
+With it, they render as a **segmented button**, the same component in its earlier form.
+
+| Shape | Material name | Modifier | Selected option |
+| --- | --- | --- | --- |
+| Button group | Connected button group | none | Filled with the accent and rounded off completely |
+| Segmented button | Segmented button | `->grouped()` | Secondary container, with a check before the label |
 
 ## Button group
 

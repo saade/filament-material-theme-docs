@@ -57,9 +57,9 @@ public function panel(Panel $panel): Panel
 }
 ```
 
-The stylesheet alone gives you the shapes, the typography and the layout. The plugin is what
-derives the color scheme, so without it the panel falls back to the palette baked into the
-stylesheet and the source color never arrives. See [theming](/getting-started/theming) for what
+The stylesheet alone gives you the shapes, the typography and the layout, on the palette baked into
+it. The plugin is what derives the color scheme from your source color and ships it to the browser,
+so without it that default palette is what you get. See [theming](/getting-started/theming) for what
 else it takes.
 
 ## What you get without calling anything
@@ -71,7 +71,8 @@ changes. Filament's own icons stay as they are unless you install the Material s
 
 The methods documented in these pages are for the cases where Material ships a component in more
 than one form and you have to say which one you want. They are registered when the package boots,
-so there is nothing to import and nothing to register per component.
+so there is nothing to import and nothing to register per component. The
+[component index](/reference/components) lists what is restyled and what is configurable.
 
 ## Requirements
 
@@ -79,3 +80,5 @@ so there is nothing to import and nothing to register per component.
 | --- | --- |
 | PHP | 8.2 or later |
 | Filament | v4 or v5 |
+| A custom panel theme | Required, since the package ships a stylesheet |
+| `codeat3/blade-google-material-design-icons` | Optional, for [Material icons](/getting-started/icons) |

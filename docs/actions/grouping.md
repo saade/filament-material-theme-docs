@@ -1,5 +1,8 @@
 # Grouping actions
 
+An `ActionGroup` renders as a Material **menu**, and its trigger as a **button**. Two further shapes
+are available, both introduced by Material 3 Expressive: the **split button** and the **FAB menu**.
+
 <Shot name="menus/menu" alt="An open menu with four rows, each with a leading icon" />
 
 ```php
@@ -16,6 +19,11 @@ ActionGroup::make([
     ->button();
 ```
 
+The panel is a surface-container sheet at elevation 2, holding 48dp rows rounded 12dp of their own.
+The same sheet renders Filament's [select](/forms/select) listbox, the color and date picker panels,
+the table's column manager and [filter panel](/tables/filters), and the
+[global search](/panels/global-search) results.
+
 ## The trigger
 
 <Shot name="buttons/grouped" alt="A menu button and a kebab icon button" />
@@ -29,8 +37,9 @@ ActionGroup::make([/* ... */])->label('Menu')->button()->tonal();
 
 ## Split button
 
-An action with a menu of related ones beside it. `splitButton()` takes the first action in the
-group as the leading half and folds the rest into the trailing one:
+The first action beside a button that opens the rest. `splitButton()` reads the leading action off
+the front of the group, so it joins `button()` and `iconButton()` as a way of saying how the group
+renders rather than taking an argument.
 
 <Shot name="buttons/split" alt="Filled, tonal and outlined split buttons, each a labeled button beside a smaller one carrying a caret" />
 
@@ -44,16 +53,13 @@ ActionGroup::make([
     ->splitButton();
 ```
 
-It joins `button()` and `iconButton()` as a way of saying how the group renders, so there is no
-separate leading action to pass.
-
 <Shot name="buttons/split-open" alt="A split button with its menu open, the trailing half fully rounded" />
 
-The inner corners open up under the pointer, and the trailing half goes fully round while its menu
-is showing.
+The two halves hold a 2dp gap. The inner corners open from 4dp to 12dp under the pointer, and the
+trailing half goes fully round while its menu is showing.
 
-Both halves are styled together. A variant, a color or an outline given to the group reaches each
-of them:
+Both halves are styled together. A variant, a color or an outline given to the group reaches each of
+them:
 
 ```php
 ActionGroup::make([/* ... */])->tonal()->color('danger')->splitButton();
@@ -67,6 +73,13 @@ ActionGroup::make([
     Action::make('saveAndClose')->label('Save and close'),
 ])->splitButton();
 ```
+
+**What it does to the group.** `splitButton()` rearranges it: the result is a button group holding
+the leading action and a nested `ActionGroup` carrying the rest, so `getActions()` reports two
+entries rather than the number you passed. The trailing button takes the group's translated
+"Actions" label as its accessible name and hides it, since Material gives it nothing but the caret.
+A variant asked for after `splitButton()` still reaches both halves; a color or an outline has to be
+set before it, or on the leading action.
 
 ## FAB menu
 
@@ -89,13 +102,23 @@ Filament's own.
 
 <Shot name="buttons/fab-menu-open" alt="The same button open, showing three labeled pills stacked above it and a close icon in place of the plus" />
 
-Open, the actions stand as separate buttons rather than rows of a menu, and the FAB carries a cross
-until it closes again. The menu opens upward, which is the direction available to a button that
-floats over the page; `dropdownPlacement()` afterwards overrides it.
+Open, the panel stops being a sheet: it has no container and no elevation, and each action stands as
+its own pill on the primary container role, 4dp apart. The FAB turns primary and carries a cross
+until it closes again.
+
+`fabMenu()` sets `dropdownPlacement('top-end')`, which is the direction available to a button that
+floats over the page. A later `dropdownPlacement()` wins:
 
 ```php
 ActionGroup::make([/* ... */])->fabMenu()->dropdownPlacement('bottom-start');
 ```
+
+## Filament compatibility
+
+`button()`, `iconButton()`, `label()`, `icon()`, `color()`, `size()`, `tooltip()`,
+`dropdownPlacement()`, `dropdownWidth()`, `visible()` and `hidden()` all behave as they do without
+the theme. `splitButton()` and `fabMenu()` both call into that API rather than around it: the first
+ends in `buttonGroup()`, the second in `fab()` plus a dropdown attribute.
 
 ## API
 

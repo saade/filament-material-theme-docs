@@ -16,8 +16,14 @@ hero:
 features:
   - title: Material components, not a repaint
     details: Actions, sections, badges, form fields, tables and navigation are rebuilt to the shapes and measurements Material publishes, rather than tinted to look approximately right.
+    link: /reference/components
+    linkText: Component index
   - title: Variants you ask for by name
     details: Material ships most components in more than one form. Each one is reached through a method on the Filament component that renders it, so a caller never carries a class string around.
+    link: /reference/api
+    linkText: API reference
   - title: Dynamic color
     details: The whole scheme, every role in both modes, is derived at runtime from a single source color, so changing the brand color changes the panel without a rebuild.
+    link: /getting-started/theming
+    linkText: Theming
 ---

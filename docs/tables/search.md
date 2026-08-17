@@ -1,8 +1,19 @@
 # Search
 
-One of the [text input](/forms/text-input) variants.
+Material's **search** is a pill on its own container tone rather than a text field: 48dp tall, fully
+rounded, on surface-container-high, with no rule between a leading icon and the query.
 
 <Shot name="text-fields/search" alt="A search field drawn as a rounded pill with a leading magnifying glass" />
+
+## Applied without being called
+
+- the table's search field
+- a table column's individual search field
+- the [global search](/panels/global-search) field
+
+## Asked for
+
+Any field takes the same shape through the [text input](/forms/text-input) variant:
 
 ```php
 use Filament\Forms\Components\TextInput;
@@ -13,12 +24,6 @@ TextInput::make('query')
     ->placeholder('Search')
     ->prefixIcon(Heroicon::OutlinedMagnifyingGlass);
 ```
-
-## Applied without being called
-
-- the table's search field
-- a table column's individual search field
-- the global search field
 
 ## API
 

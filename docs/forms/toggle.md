@@ -1,5 +1,9 @@
 # Toggle
 
+A `Toggle` renders as a Material **switch**: a 52x32dp track carrying a handle that changes size
+with what it has to say, 16dp bare, 24dp once it is on or carrying an icon, and larger again while
+pressed.
+
 <Shot name="switch/on" alt="A switch in its on state, the track filled and the handle grown to carry a check" />
 
 <Shot name="switch/off" alt="A switch in its off state, a small handle on an outlined track" />
@@ -10,7 +14,8 @@ use Filament\Forms\Components\Toggle;
 Toggle::make('notifications');
 ```
 
-The handle grows when the switch turns on, and again while it is held down.
+The mark on a switch that is on is drawn rather than shipped as an icon, and only into the slot
+Filament leaves empty, so an `onIcon()` you asked for keeps the place.
 
 ## With icons
 

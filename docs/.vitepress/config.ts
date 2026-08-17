@@ -29,6 +29,7 @@ export default defineConfig({
                     { text: 'Installation', link: '/getting-started/installation' },
                     { text: 'Theming', link: '/getting-started/theming' },
                     { text: 'Icons', link: '/getting-started/icons' },
+                    { text: 'Customization', link: '/getting-started/customization' },
                 ],
             },
             {
@@ -67,6 +68,7 @@ export default defineConfig({
                     { text: 'Color picker', link: '/forms/color-picker' },
                     { text: 'File upload', link: '/forms/file-upload' },
                     { text: 'Rich editor', link: '/forms/rich-editor' },
+                    { text: 'Code editor', link: '/forms/code-editor' },
                     { text: 'Markdown editor', link: '/forms/markdown-editor' },
                     { text: 'Repeater', link: '/forms/repeater' },
                 ],
@@ -77,7 +79,12 @@ export default defineConfig({
                     { text: 'Table', link: '/tables/table' },
                     { text: 'Filters', link: '/tables/filters' },
                     { text: 'Search', link: '/tables/search' },
+                    { text: 'Pagination', link: '/tables/pagination' },
                 ],
+            },
+            {
+                text: 'Infolists',
+                items: [{ text: 'Entries', link: '/infolists/entries' }],
             },
             {
                 text: 'Notifications',
@@ -85,7 +92,15 @@ export default defineConfig({
             },
             {
                 text: 'Panels',
-                items: [{ text: 'Navigation', link: '/panels/navigation' }],
+                items: [
+                    { text: 'Navigation', link: '/panels/navigation' },
+                    { text: 'Global search', link: '/panels/global-search' },
+                    { text: 'Pages', link: '/panels/pages' },
+                ],
+            },
+            {
+                text: 'Widgets',
+                items: [{ text: 'Widgets', link: '/widgets/widgets' }],
             },
             {
                 text: 'Miscellaneous',
@@ -97,7 +112,10 @@ export default defineConfig({
             },
             {
                 text: 'Reference',
-                items: [{ text: 'API', link: '/reference/api' }],
+                items: [
+                    { text: 'Component index', link: '/reference/components' },
+                    { text: 'API', link: '/reference/api' },
+                ],
             },
         ],
 
