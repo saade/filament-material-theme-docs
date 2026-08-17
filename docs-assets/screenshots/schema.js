@@ -329,9 +329,30 @@ export default {
         url: 'components/date-time-pickers',
         selector: '.shot-date-time-picker',
     },
+    /* The panel is scoped to its own field, since all three fields hold one. */
+    'date-pickers/date-time-panel': {
+        url: 'components/date-time-pickers',
+        selector: '.shot-date-time-picker .fi-fo-date-time-picker-panel',
+        async before(page) {
+            await page.click('.shot-date-time-picker .fi-fo-date-time-picker-trigger')
+            await page.waitForSelector('.shot-date-time-picker .fi-fo-date-time-picker-panel', {
+                visible: true,
+            })
+        },
+    },
     'date-pickers/time': {
         url: 'components/date-time-pickers',
         selector: '.shot-time-picker',
+    },
+    'date-pickers/time-panel': {
+        url: 'components/date-time-pickers',
+        selector: '.shot-time-picker .fi-fo-date-time-picker-panel',
+        async before(page) {
+            await page.click('.shot-time-picker .fi-fo-date-time-picker-trigger')
+            await page.waitForSelector('.shot-time-picker .fi-fo-date-time-picker-panel', {
+                visible: true,
+            })
+        },
     },
 
     'progress/spinner': {
