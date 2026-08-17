@@ -1,3 +1,7 @@
+---
+demo: styles/dynamic-color
+---
+
 # Theming
 
 Material derives a whole scheme from one color. Every role, in both modes, follows from it, so the

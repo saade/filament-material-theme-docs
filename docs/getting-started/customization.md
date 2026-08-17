@@ -1,3 +1,7 @@
+---
+demo: styles/tokens
+---
+
 # Customization
 
 Everything the theme draws is bound to a custom property, so your own Blade views, widgets and
