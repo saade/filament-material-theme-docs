@@ -71,3 +71,38 @@ html:not(.dark) .shot-dark {
 .vp-doc td code {
     white-space: nowrap;
 }
+
+/* The demo panel a page is about, when one is configured. */
+.demo-link {
+    align-items: center;
+    border: 1px solid var(--vp-c-divider);
+    border-radius: 999px;
+    color: var(--vp-c-text-2);
+    display: inline-flex;
+    float: right;
+    font-size: 13px;
+    gap: 6px;
+    line-height: 1;
+    margin-block-start: 4px;
+    padding: 6px 12px;
+    /* The main column is a later sibling, so it paints over a bare float and
+       takes the clicks meant for this. */
+    position: relative;
+    z-index: 1;
+    transition:
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.demo-link:hover {
+    border-color: var(--vp-c-brand-1);
+    color: var(--vp-c-brand-1);
+}
+
+/* Floated beside the heading, so it takes no line of its own. */
+@media (max-width: 640px) {
+    .demo-link {
+        float: none;
+        margin-block-end: 12px;
+    }
+}

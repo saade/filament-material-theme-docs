@@ -1,3 +1,7 @@
+---
+demo: components/tables
+---
+
 # Pagination
 
 A table's pagination renders as a row of fully rounded 40dp targets, marked with the secondary

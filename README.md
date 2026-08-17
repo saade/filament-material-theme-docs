@@ -15,6 +15,27 @@ npm run build      # docs/.vitepress/dist
 npm run preview    # serve the built site
 ```
 
+## The demo panel
+
+Each component page links to the demo panel it was captured from, when one is configured. The
+address comes from the environment, so it can differ per deployment:
+
+```sh
+cp .env.example .env   # DEMO_URL=https://your-demo.test/material
+```
+
+With no `DEMO_URL` the links are simply not rendered. The target is read off the first screenshot on
+the page, since `schema.js` already names the URL every image came from, so the two cannot drift. A
+page can override it, or opt out, in its frontmatter:
+
+```md
+---
+demo: components/tables   # or false
+---
+```
+
+The deploy workflow reads `DEMO_URL` from a repository variable of the same name.
+
 ## Screenshots
 
 Every image on the component pages is captured from a running panel rather than drawn by hand,

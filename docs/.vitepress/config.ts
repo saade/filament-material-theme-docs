@@ -1,4 +1,55 @@
+import { readdirSync, readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
+import { dirname, join, resolve } from 'node:path'
 import { defineConfig } from 'vitepress'
+import { loadEnv } from 'vite'
+import schema from '../../docs-assets/screenshots/schema.js'
+
+const HERE = dirname(fileURLToPath(import.meta.url))
+const DOCS = resolve(HERE, '..')
+
+/*
+ * The demo panel is a different deployment per environment, so its address comes
+ * from the environment rather than from here. Without one the links are simply
+ * not rendered.
+ */
+const DEMO_URL = (process.env.DEMO_URL ?? loadEnv('', resolve(DOCS, '../'), '').DEMO_URL ?? '')
+    .replace(/\/+$/, '')
+
+/*
+ * Which page of the demo a documentation page is about. Read off the first
+ * screenshot on the page, since schema.js already names the URL every image was
+ * captured from, so the pair cannot drift. A page may override it, or opt out,
+ * with a `demo` key in its frontmatter.
+ */
+function demoPages(directory = DOCS, prefix = ''): Record<string, string> {
+    const pages: Record<string, string> = {}
+
+    for (const entry of readdirSync(directory, { withFileTypes: true })) {
+        if (entry.isDirectory()) {
+            if (entry.name.startsWith('.') || entry.name === 'public') {
+                continue
+            }
+
+            Object.assign(pages, demoPages(join(directory, entry.name), `${prefix}${entry.name}/`))
+
+            continue
+        }
+
+        if (! entry.name.endsWith('.md')) {
+            continue
+        }
+
+        const shot = readFileSync(join(directory, entry.name), 'utf-8').match(/<Shot name="([^"]+)"/)
+        const url = shot ? schema[shot[1]]?.url : undefined
+
+        if (url) {
+            pages[`${prefix}${entry.name.replace(/\.md$/, '')}`] = url
+        }
+    }
+
+    return pages
+}
 
 export default defineConfig({
     title: 'Filament Material Theme',
@@ -15,10 +66,13 @@ export default defineConfig({
     themeConfig: {
         search: { provider: 'local' },
 
+        demo: { url: DEMO_URL, pages: demoPages() },
+
         nav: [
             { text: 'Getting started', link: '/getting-started/installation' },
             { text: 'Components', link: '/actions/buttons' },
             { text: 'API', link: '/reference/api' },
+            ...(DEMO_URL ? [{ text: 'Demo', link: DEMO_URL }] : []),
         ],
 
         // Grouped by the Filament package each component comes from.
