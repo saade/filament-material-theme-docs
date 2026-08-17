@@ -21,6 +21,9 @@ const EMAIL = process.env.AUTH_EMAIL ?? 'saade@saade.dev'
 const PASSWORD = process.env.AUTH_PASSWORD ?? 'Fil@ment1sTh3Go@t!'
 
 const THEMES = ['light', 'dark']
+
+/* Narrows the run to the entries whose name matches, for iterating on one image. */
+const ONLY = process.env.ONLY ? new RegExp(process.env.ONLY) : null
 const VIEWPORT = { width: 1440, height: 900, deviceScaleFactor: 2 }
 
 /* Overridable per entry, for a control that sits closer than this to its own label. */
@@ -106,12 +109,14 @@ async function clipFor(page, selector, tight, padding) {
     }, selector, tight, padding)
 }
 
-const byUrl = Object.entries(schema).reduce((groups, [file, options]) => {
-    groups[options.url] ??= []
-    groups[options.url].push([file, options])
+const byUrl = Object.entries(schema)
+    .filter(([file]) => ! ONLY || ONLY.test(file))
+    .reduce((groups, [file, options]) => {
+        groups[options.url] ??= []
+        groups[options.url].push([file, options])
 
-    return groups
-}, {})
+        return groups
+    }, {})
 
 const browser = await puppeteer.launch({ acceptInsecureCerts: true })
 let count = 0

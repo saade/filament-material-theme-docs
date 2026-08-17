@@ -33,6 +33,12 @@ be serving before the script runs. Point it elsewhere with environment variables
 BASE_URL=https://example.test/admin AUTH_EMAIL=you@example.com AUTH_PASSWORD=secret npm run screenshots
 ```
 
+`ONLY` narrows the run to the entries whose name matches, for iterating on one image:
+
+```bash
+ONLY='buttons/fab' npm run screenshots
+```
+
 Images are written to `docs/public/screenshots/{light,dark}/` and committed, because the panel
 they come from is not reachable from CI.
 

@@ -134,20 +134,21 @@ Action::make('compose')
     ->color('info');
 ```
 
-`extendedFab()` renders as a labelled button, so it needs both an `icon()` and a `label()`.
+`extendedFab()` renders as a labeled button, so it needs both an `icon()` and a `label()`.
 
 ## API
 
 | Method | On | Result |
 | --- | --- | --- |
-| `filledButton()` | `Action` | Filled |
-| `tonal()` | `Action` | Filled tonal |
-| `elevated()` | `Action` | Elevated |
-| `fab()` | `Action` | FAB, rendered as an icon button |
-| `extendedFab()` | `Action` | Extended FAB, rendered as a labelled button |
-| `variant(ButtonVariant\|string)` | `Action` | Any of the above by name |
+| `filledButton()` | `Action`, `ActionGroup` | Filled |
+| `tonal()` | `Action`, `ActionGroup` | Filled tonal |
+| `elevated()` | `Action`, `ActionGroup` | Elevated |
+| `fab()` | `Action`, `ActionGroup` | FAB, rendered as an icon button |
+| `extendedFab()` | `Action`, `ActionGroup` | Extended FAB, rendered as a labeled button |
+| `variant(ButtonVariant\|string)` | `Action`, `ActionGroup` | Any of the above by name |
 
-Registered on the base `Action`, so `CreateAction`, `EditAction` and the rest all inherit them.
+Registered on the base `Action`, so `CreateAction`, `EditAction` and the rest all inherit them. An
+[`ActionGroup`](/actions/grouping) takes the same set, since a group renders as a button too.
 
 `md-outlined` is applied without being called to any action where `isOutlined()` is true, which is
 what makes an outlined icon button work.

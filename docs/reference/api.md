@@ -21,6 +21,14 @@ button variants, and every form field takes the field ones.
 | `variant(ButtonVariant\|string)` | Any button variant by name | [Buttons](/actions/buttons) |
 | `bottomSheet(bool\|Closure = true)` | Bottom sheet, turning on `slideOver()` too | [Modals](/actions/modals) |
 
+Every one of those is registered on `Filament\Actions\ActionGroup` too, since a group renders as a
+button, and it takes two of its own:
+
+| Method | Result | See |
+| --- | --- | --- |
+| `splitButton()` | Leading action beside a menu of the rest | [Grouping](/actions/grouping#split-button) |
+| `fabMenu()` | FAB opening its actions as separate buttons | [Grouping](/actions/grouping#fab-menu) |
+
 Applied without being called: any action where `isOutlined()` is true gets the outlined treatment,
 which is what makes an outlined icon button work, since Filament drops the flag when it renders
 one.
@@ -83,6 +91,17 @@ relying on it:
 `Section` they mean the section, and on an `Action` they mean the button. Each resolves to the closest
 registration, so the call reads the same wherever it appears.
 
+## Components
+
+`Saade\FilamentMaterialTheme\Schemas\Components\Divider`, the one component the theme adds rather
+than restyles.
+
+| Method | Result | See |
+| --- | --- | --- |
+| `inset()` | Indented at the leading edge | [Divider](/schemas/divider) |
+| `middleInset()` | Indented at both | [Divider](/schemas/divider) |
+| `variant(DividerVariant\|string\|Closure)` | Any of the three by name | [Divider](/schemas/divider) |
+
 ## Enums
 
 `Saade\FilamentMaterialTheme\Enums`
@@ -94,6 +113,7 @@ registration, so the call reads the same wherever it appears.
 | `ChipVariant` | `Filled`, `Outlined`, `Elevated` |
 | `FieldVariant` | `Filled`, `Outlined`, `Search` |
 | `TabsVariant` | `Primary`, `Secondary` |
+| `DividerVariant` | `FullWidth`, `Inset`, `MiddleInset` |
 
 Every one is a backed string enum, and every `variant()` takes either the case or its value.
 `ButtonVariant::Outlined` and `ButtonVariant::Text` resolve to Filament's own `outlined()` and

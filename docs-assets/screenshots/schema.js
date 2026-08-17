@@ -135,6 +135,50 @@ export default {
         selector: '.shot-buttons-grouped',
         tight: true,
     },
+    'buttons/split': {
+        url: 'components/buttons',
+        selector: '.shot-buttons-split',
+        tight: true,
+    },
+    /* Framed on the one button whose menu is open, since the panel covers the two
+       beside it. */
+    'buttons/split-open': {
+        url: 'components/buttons',
+        selector: ['.shot-buttons-split .fi-btn-group', '.shot-buttons-split .fi-dropdown-panel'],
+        padding: 4,
+        before: (page) => openDropdown(
+            page,
+            '.shot-buttons-split .md-split-button-menu',
+            '.shot-buttons-split .fi-dropdown-panel',
+        ),
+    },
+    'buttons/fab-menu': {
+        url: 'components/buttons',
+        selector: '.shot-buttons-fab-menu',
+        tight: true,
+    },
+    'buttons/fab-menu-open': {
+        url: 'components/buttons',
+        selector: '.shot-buttons-fab-menu',
+        tight: true,
+        before: (page) => openDropdown(
+            page,
+            '.shot-buttons-fab-menu .md-fab',
+            '.shot-buttons-fab-menu .fi-dropdown-panel',
+        ),
+    },
+
+    /* The three lengths only read against each other, and against the text they
+       divide, so they are framed as one column rather than one rule at a time. */
+    'dividers/variants': {
+        url: 'components/dividers',
+        selector: [
+            '.shot-divider-full-width',
+            '.shot-dividers-first',
+            '.shot-dividers-last',
+        ],
+        padding: 24,
+    },
 
     'cards/default': {
         url: 'components/cards',

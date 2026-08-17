@@ -47,6 +47,7 @@ export default defineConfig({
                     { text: 'Tabs', link: '/schemas/tabs' },
                     { text: 'Wizard', link: '/schemas/wizard' },
                     { text: 'Callout', link: '/schemas/callout' },
+                    { text: 'Divider', link: '/schemas/divider' },
                 ],
             },
             {
