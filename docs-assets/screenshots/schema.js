@@ -425,6 +425,26 @@ export default {
         url: 'components/sliders',
         selector: '.shot-slider-range',
     },
+    /* The value indicator is raised by the handle rather than standing over it,
+       so the pointer has to stay on the handle for it to be in the frame. */
+    'sliders/tooltip': {
+        url: 'components/sliders',
+        selector: '.shot-slider-discrete',
+        hover: true,
+        before: (page) => page.hover('.shot-slider-discrete .noUi-handle'),
+    },
+    'sliders/vertical': {
+        url: 'components/sliders',
+        selector: '.shot-slider-vertical',
+    },
+    'sliders/vertical-discrete': {
+        url: 'components/sliders',
+        selector: '.shot-slider-vertical-discrete',
+    },
+    'sliders/vertical-range': {
+        url: 'components/sliders',
+        selector: '.shot-slider-vertical-range',
+    },
 
     'snackbar/success': {
         url: 'components/snackbar',
