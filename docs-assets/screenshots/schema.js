@@ -130,6 +130,26 @@ export default {
         selector: '.shot-buttons-segmented-colors',
         padding: 4,
     },
+    'buttons/group': {
+        url: 'components/buttons',
+        selector: '.shot-buttons-group',
+        padding: 4,
+    },
+    'buttons/group-multiple': {
+        url: 'components/buttons',
+        selector: '.shot-buttons-group-multiple',
+        padding: 4,
+    },
+    'buttons/group-icons': {
+        url: 'components/buttons',
+        selector: '.shot-buttons-group-icons',
+        padding: 4,
+    },
+    'buttons/group-colors': {
+        url: 'components/buttons',
+        selector: '.shot-buttons-group-colors',
+        padding: 4,
+    },
     'buttons/grouped': {
         url: 'components/buttons',
         selector: '.shot-buttons-grouped',
