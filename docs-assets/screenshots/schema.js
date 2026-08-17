@@ -482,6 +482,23 @@ export default {
         url: 'components/switch',
         selector: '.shot-switch-off',
     },
+    'switch/icons-on': {
+        url: 'components/switch',
+        selector: '.shot-switch-icons-on',
+    },
+    'switch/icons-off': {
+        url: 'components/switch',
+        selector: '.shot-switch-icons-off',
+    },
+    /* The first and the last of the six, whose union is the grid holding them. */
+    'switch/colors': {
+        url: 'components/switch',
+        selector: ['.shot-switch-color-primary', '.shot-switch-color-info'],
+    },
+    'switch/off-colors': {
+        url: 'components/switch',
+        selector: ['.shot-switch-off-default', '.shot-switch-off-danger'],
+    },
 
     'tooltips/plain': {
         url: 'components/tooltips',
