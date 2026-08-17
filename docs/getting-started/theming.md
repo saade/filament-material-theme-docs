@@ -55,6 +55,8 @@ FilamentMaterialThemePlugin::make()
     ->tertiary('#7D5260');
 ```
 
+<Shot name="theming/pinning" alt="The demo's dynamic color page with secondary and tertiary pinned, showing the roles each one produced and the code that pins them" />
+
 Pinning is per role, so naming a secondary does not oblige you to name a tertiary. Anything left
 unnamed is derived as before, and the seed still decides every neutral, every surface tone and every
 step of the tonal ramp.

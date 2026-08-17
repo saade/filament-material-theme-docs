@@ -45,6 +45,12 @@ const collapseRail = async (page) => {
     )
 }
 
+/*
+ * A capture taller than the viewport carries the bar that follows the scroll
+ * across the middle of it, since the bar is painted wherever the scroll left it.
+ */
+const hideTopbar = (page) => page.addStyleTag({ content: '.fi-topbar { display: none }' })
+
 /* Every page has several dropdown panels in it, so the one being opened is named. */
 const MENU_PANEL = '.fi-dropdown:has(.shot-open-menu) .fi-dropdown-panel'
 
@@ -518,6 +524,55 @@ export default {
     'switch/off-colors': {
         url: 'components/switch',
         selector: ['.shot-switch-off-default', '.shot-switch-off-danger'],
+    },
+
+    /* The two Styles pages, which show the scheme itself rather than a component
+       drawn from it. Framed on the card, since the heading is what says which
+       part of the scheme is on show. */
+    'theming/pinning': {
+        url: 'styles/dynamic-color',
+        selector: '.fi-section:has(.md-pinning)',
+        /* Pinned rather than at rest: the point of the page is what happens when
+           an accent is named, and the code block below repeats it back. Each is
+           given a color of its own, since pinning both to the seed would leave
+           three rows of the same swatches.
+         *
+         * Set through the component rather than typed into the fields. The page
+         * is live on a debounce, and a field written into while the round trip
+         * for the last one is still out has its value patched away underneath.
+         */
+        async before(page) {
+            await page.evaluate(async () => {
+                const component = window.Livewire.all().find((c) => c.name.endsWith('dynamic-color'))
+
+                await component.$wire.set('data.pin_secondary', true)
+                await component.$wire.set('data.secondary', '#625B71')
+                await component.$wire.set('data.pin_tertiary', true)
+                await component.$wire.set('data.tertiary', '#7D5260')
+            })
+
+            await page.waitForFunction(
+                () => document.querySelector('.md-pinning-code')?.textContent.includes("->tertiary('#7D5260')"),
+            )
+
+            await hideTopbar(page)
+        },
+    },
+
+    'theming/roles': {
+        url: 'styles/tokens',
+        selector: '.fi-section:has(.md-gallery-swatches)',
+        before: hideTopbar,
+    },
+    'theming/typescale': {
+        url: 'styles/tokens',
+        selector: '.fi-section:has(.md-gallery-typescale)',
+        before: hideTopbar,
+    },
+    'theming/shape': {
+        url: 'styles/tokens',
+        selector: '.fi-section:has(.md-gallery-shape)',
+        before: hideTopbar,
     },
 
     'tooltips/plain': {

@@ -19,6 +19,8 @@ The runtime writes Material's full set of roles, in both modes, onto the documen
 }
 ```
 
+<Shot name="theming/roles" alt="Every color role as a labeled swatch, grouped by primary, secondary, tertiary, error, custom, surface and outline" />
+
 The names are Material's own: `primary`, `secondary`, `tertiary`, `error`, each with `on-`,
 `-container` and `on--container` pairs, plus the surface ladder (`surface`,
 `surface-container-lowest` through `surface-container-highest`, `surface-variant`, `surface-dim`,
@@ -52,6 +54,10 @@ knowing which Material role that is today:
     font: var(--md-sys-typescale-body-medium);
 }
 ```
+
+<Shot name="theming/typescale" alt="Every style in the type scale, each shown in its plain and emphasized weight" />
+
+<Shot name="theming/shape" alt="The ten corner sizes, from none through to full" />
 
 ::: info The type scale asks for Roboto Flex
 It falls back to the system sans, and the package ships no webfont, so load Roboto Flex yourself if
