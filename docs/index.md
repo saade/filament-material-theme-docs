@@ -12,9 +12,6 @@ hero:
     - theme: alt
       text: Components
       link: /actions/buttons
-    - theme: alt
-      text: View on GitHub
-      link: https://github.com/saade/filament-material-theme
   image:
     light: /screenshots/light/hero/panel.png
     dark: /screenshots/dark/hero/panel.png

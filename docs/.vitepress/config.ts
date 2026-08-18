@@ -85,6 +85,21 @@ export default defineConfig({
         ['meta', { name: 'twitter:image', content: `${SITE}/art/og.png` }],
     ],
 
+    /*
+     * The hero's demo action needs the same environment-provided address as the
+     * nav, which frontmatter cannot read, so it is appended here and left off
+     * entirely when there is no demo to point at.
+     */
+    transformPageData(pageData) {
+        if (pageData.relativePath !== 'index.md' || !DEMO_URL) return
+
+        pageData.frontmatter.hero?.actions?.push({
+            theme: 'alt',
+            text: 'Explore the demo',
+            link: DEMO_URL,
+        })
+    },
+
     themeConfig: {
         logo: '/logo.svg',
 
@@ -195,10 +210,6 @@ export default defineConfig({
                     { text: 'API', link: '/reference/api' },
                 ],
             },
-        ],
-
-        socialLinks: [
-            { icon: 'github', link: 'https://github.com/saade/filament-material-theme' },
         ],
 
         outline: [2, 3],
