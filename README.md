@@ -20,8 +20,7 @@
 </p>
 
 <p align="center">
-    <b>Launch offer:</b> <code>LAUNCH20</code> takes 20% off until September 1.<br>
-    $59 for a single project with a year of updates, $169 for unlimited projects with updates for good.
+    <b>Launch offer:</b> <code>LAUNCH20</code> takes 20% off until September 1.
 </p>
 
 ---
