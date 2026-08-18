@@ -1,5 +1,29 @@
 # Installation
 
+The package is distributed from a private Composer repository, so it takes two lines of setup before
+the install.
+
+## Add the repository
+
+```bash
+composer config repositories.saade composer https://saade.privato.pub/composer
+```
+
+## Authenticate
+
+Use the email you bought with and the license key from your purchase:
+
+```bash
+composer config --auth http-basic.saade.privato.pub "your@email.com" "your-license-key"
+```
+
+That writes the credentials to `auth.json`. Keep the file out of version control, and give your CI
+the same credentials through the environment instead:
+
+```bash
+COMPOSER_AUTH='{"http-basic":{"saade.privato.pub":{"username":"your@email.com","password":"your-license-key"}}}'
+```
+
 ## Install the package
 
 ```bash
@@ -81,4 +105,5 @@ so there is nothing to import and nothing to register per component. The
 | PHP | 8.2 or later |
 | Filament | v4 or v5 |
 | A custom panel theme | Required, since the package ships a stylesheet |
+| A license | One per project, with a year of updates |
 | `codeat3/blade-google-material-design-icons` | Optional, for [Material icons](/getting-started/icons) |

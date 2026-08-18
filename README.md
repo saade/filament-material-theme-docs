@@ -104,21 +104,18 @@ More of everything, component by component, in the
 
 ## Requirements
 
-| | |
-| --- | --- |
-| PHP | 8.2 or later |
-| Filament | v4 or v5 |
+|                      |                                                |
+| -------------------- | ---------------------------------------------- |
+| PHP                  | 8.2 or later                                   |
+| Filament             | v4 or v5                                       |
 | A custom panel theme | Required, since the package ships a stylesheet |
+| A license            | One per project, with a year of updates        |
 
 ## Installation
 
-```bash
-composer require saade/filament-material-theme
-```
-
-Then import the theme into your panel's stylesheet, after Filament's, and register the plugin. The
+The package is distributed from a private Composer repository and needs a license. The
 [installation guide](https://filament-material-theme.saade.dev/getting-started/installation) has the
-whole of it, including the `@source` lines Tailwind needs.
+whole of it: the repository, the credentials, the stylesheet import and the plugin registration.
 
 ## This repository
 
