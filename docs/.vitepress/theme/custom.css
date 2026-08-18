@@ -106,3 +106,60 @@ html:not(.dark) .shot-dark {
         margin-block-end: 12px;
     }
 }
+
+/*
+ * The home hero carries a panel rather than a logo, so the image takes the room
+ * the default theme reserves for a square, keeps its own aspect, and is turned
+ * on its axis: a screen photographed at an angle rather than pasted flat, which
+ * is what gives the page depth without a mockup frame around it.
+ *
+ * It is the same capture the component pages use, so it cannot drift from the
+ * theme. Below the breakpoint it lies flat and full width, where a perspective
+ * would only cost legibility.
+ */
+@media (min-width: 960px) {
+    .VPHero.has-image .container {
+        gap: 24px;
+    }
+
+    .VPHero .main {
+        max-width: 520px;
+    }
+
+    .VPHero .image {
+        flex: 1 1 auto;
+        margin: 0;
+        max-width: none;
+        min-width: 0;
+        order: 2;
+    }
+
+    /* Wider than the column it sits in, so the panel runs toward the edge
+       without the turn carrying its far side off the page. */
+    .VPHero .image-container {
+        height: auto;
+        margin: 0;
+        transform: none;
+        width: 122%;
+    }
+
+    .VPHero .image-src {
+        border: 1px solid var(--vp-c-divider);
+        border-radius: 14px;
+        box-shadow:
+            0 4px 12px rgb(0 0 0 / 0.2),
+            0 48px 96px -32px rgb(0 0 0 / 0.55);
+        max-height: none;
+        max-width: none;
+        position: static;
+        transform: perspective(2000px) rotateY(-11deg) rotateX(3deg) rotate(0.6deg);
+        transform-origin: left center;
+        width: 100%;
+    }
+
+    /* The default glow sits behind a square and reads as a stray blob behind a
+       screenshot that already carries its own elevation. */
+    .VPHero .image-bg {
+        display: none;
+    }
+}

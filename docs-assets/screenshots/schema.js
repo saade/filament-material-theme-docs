@@ -526,6 +526,18 @@ export default {
         selector: ['.shot-switch-off-default', '.shot-switch-off-danger'],
     },
 
+    /*
+     * The whole panel, for the documentation's own hero rather than for a
+     * component page: the app bar, the drawer and a screen of real components in
+     * one frame. It comes from the demo's promo stage, which is composed for
+     * exactly this.
+     */
+    'hero/panel': {
+        url: 'promo/stage',
+        selector: '.fi-ta-table',
+        viewport: [1180, 780],
+    },
+
     /* The two Styles pages, which show the scheme itself rather than a component
        drawn from it. Framed on the card, since the heading is what says which
        part of the scheme is on show. */

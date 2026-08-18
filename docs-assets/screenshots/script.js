@@ -166,20 +166,44 @@ for (const theme of THEMES) {
             const anchor = [options.selector].flat()[0]
 
             await page.waitForSelector(anchor)
-            await page.$eval(anchor, (element) => element.scrollIntoView({ block: 'center' }))
+
+            /* A whole screen is framed by the viewport rather than by a box
+               inside it, so it is captured where the page opens. An entry may
+               size that frame itself, which is how a screen meant to be looked
+               at small is captured with its own text large enough to read. */
+            if (options.viewport) {
+                if (Array.isArray(options.viewport)) {
+                    const [width, height] = options.viewport
+
+                    await page.setViewport({ ...VIEWPORT, width, height })
+                    await page.goto(`${BASE_URL}/${url}`, { waitUntil: 'networkidle2' })
+                    await page.addStyleTag({ content: STILL })
+                }
+
+                await page.evaluate(() => window.scrollTo(0, 0))
+            } else {
+                await page.$eval(anchor, (element) => element.scrollIntoView({ block: 'center' }))
+            }
 
             const target = path.join(OUTPUT, theme, `${file}.png`)
             await fs.mkdir(path.dirname(target), { recursive: true })
 
             await page.screenshot({
                 path: target,
-                clip: await clipFor(
-                    page,
-                    options.selector,
-                    options.tight ?? false,
-                    options.padding ?? PADDING,
-                ),
+                clip: options.viewport
+                    ? undefined
+                    : await clipFor(
+                        page,
+                        options.selector,
+                        options.tight ?? false,
+                        options.padding ?? PADDING,
+                    ),
             })
+
+            if (Array.isArray(options.viewport)) {
+                await page.setViewport(VIEWPORT)
+                dirty = true
+            }
 
             count++
             console.log(`${theme}/${file}.png`)

@@ -12,6 +12,10 @@ hero:
     - theme: alt
       text: View on GitHub
       link: https://github.com/saade/filament-material-theme
+  image:
+    light: /screenshots/light/hero/panel.png
+    dark: /screenshots/dark/hero/panel.png
+    alt: A Filament panel with the theme applied, showing the navigation drawer, a form and a table
 
 features:
   - title: Material components, not a repaint

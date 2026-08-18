@@ -16,6 +16,10 @@ const DOCS = resolve(HERE, '..')
 const DEMO_URL = (process.env.DEMO_URL ?? loadEnv('', resolve(DOCS, '../'), '').DEMO_URL ?? '')
     .replace(/\/+$/, '')
 
+/* GitHub Pages serves a project site from a subpath, which the head links have
+   to carry themselves; VitePress only rewrites the ones it owns. */
+const BASE = process.env.BASE_PATH ?? '/'
+
 /*
  * Which page of the demo a documentation page is about. Read off the first
  * screenshot on the page, since schema.js already names the URL every image was
@@ -56,14 +60,23 @@ export default defineConfig({
     description: 'A Material Design 3 theme for Filament, with dynamic color.',
 
     // GitHub Pages serves a project site from a subpath; a custom domain serves from the root.
-    base: process.env.BASE_PATH ?? '/',
+    base: BASE,
 
     cleanUrls: true,
     lastUpdated: true,
 
-    head: [['meta', { name: 'theme-color', content: '#6750A4' }]],
+    head: [
+        ['meta', { name: 'theme-color', content: '#6750A4' }],
+        /* Built by docs-assets/favicon/generate.mjs. The svg is what a current
+           browser takes; the ico is for everything that still asks for one. */
+        ['link', { rel: 'icon', type: 'image/svg+xml', href: `${BASE}favicon.svg` }],
+        ['link', { rel: 'icon', type: 'image/x-icon', href: `${BASE}favicon.ico` }],
+        ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: `${BASE}apple-touch-icon.png` }],
+    ],
 
     themeConfig: {
+        logo: '/logo.svg',
+
         search: { provider: 'local' },
 
         demo: { url: DEMO_URL, pages: demoPages() },
