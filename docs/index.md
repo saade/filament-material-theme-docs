@@ -7,6 +7,9 @@ hero:
   tagline: Every panel component redrawn to Material's spec, and a whole color scheme derived from one brand color.
   actions:
     - theme: brand
+      text: Get a license
+      link: https://saade.privato.pub/portal/filament-material-theme/checkout
+    - theme: alt
       text: Components
       link: /actions/buttons
     - theme: alt
@@ -30,4 +33,8 @@ features:
     details: The whole scheme, every role in both modes, is derived at runtime from a single source color, so changing the brand color changes the panel without a rebuild.
     link: /getting-started/theming
     linkText: Theming
+  - title: Launch offer, 20% off
+    details: "LAUNCH20 takes 20% off every license until September 1. $59 for a single project with a year of updates, $169 for unlimited projects with updates for good."
+    link: https://saade.privato.pub/portal/filament-material-theme/checkout
+    linkText: Get a license
 ---

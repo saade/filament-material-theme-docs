@@ -15,6 +15,13 @@
     <a href="https://filament.saade.dev/material"><b>Live demo</b></a>
     &nbsp;·&nbsp;
     <a href="https://filament-material-theme.saade.dev"><b>Documentation</b></a>
+    &nbsp;·&nbsp;
+    <a href="https://saade.privato.pub/portal/filament-material-theme/checkout"><b>Get a license</b></a>
+</p>
+
+<p align="center">
+    <b>Launch offer:</b> <code>LAUNCH20</code> takes 20% off until September 1.<br>
+    $59 for a single project with a year of updates, $169 for unlimited projects with updates for good.
 </p>
 
 ---
