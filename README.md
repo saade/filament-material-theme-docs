@@ -124,24 +124,6 @@ The package is distributed from a private Composer repository and needs a licens
 [installation guide](https://filament-material-theme.saade.dev/getting-started/installation) has the
 whole of it: the repository, the credentials, the stylesheet import and the plugin registration.
 
-## This repository
-
-The documentation site, built with VitePress and published to
-[filament-material-theme.saade.dev](https://filament-material-theme.saade.dev). The package itself
-lives apart from it.
-
-```bash
-npm install
-npm run dev          # http://localhost:5173
-npm run build        # docs/.vitepress/dist
-npm run screenshots  # recapture every image from a running panel
-```
-
-Every image on the component pages is captured from a real panel rather than drawn by hand, so the
-documentation cannot drift from what the theme renders. See
-[`docs-assets/README.md`](docs-assets/README.md) for how the capture, the demo links and the favicons
-are built.
-
 ## License
 
 The documentation in this repository is open. The theme itself is a commercial package; see the
