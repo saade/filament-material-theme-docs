@@ -13,7 +13,11 @@ const DOCS = resolve(HERE, '..')
  * from the environment rather than from here. Without one the links are simply
  * not rendered.
  */
-const DEMO_URL = (process.env.DEMO_URL ?? loadEnv('', resolve(DOCS, '../'), '').DEMO_URL ?? '')
+const SITE = 'https://filament-material-theme.saade.dev'
+
+/* An unset repository variable arrives as an empty string, not as nothing, so
+   the fallbacks are chained on truth rather than on definedness. */
+const DEMO_URL = (process.env.DEMO_URL || loadEnv('', resolve(DOCS, '../'), '').DEMO_URL || 'https://filament.saade.dev/material')
     .replace(/\/+$/, '')
 
 /* GitHub Pages serves a project site from a subpath, which the head links have
@@ -72,6 +76,13 @@ export default defineConfig({
         ['link', { rel: 'icon', type: 'image/svg+xml', href: `${BASE}favicon.svg` }],
         ['link', { rel: 'icon', type: 'image/x-icon', href: `${BASE}favicon.ico` }],
         ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: `${BASE}apple-touch-icon.png` }],
+        ['meta', { property: 'og:type', content: 'website' }],
+        ['meta', { property: 'og:url', content: SITE }],
+        ['meta', { property: 'og:title', content: 'Filament Material Theme' }],
+        ['meta', { property: 'og:description', content: 'Material Design 3 for Filament. Every panel component redrawn to Material\'s spec, and a whole color scheme derived from one brand color.' }],
+        ['meta', { property: 'og:image', content: `${SITE}/art/og.png` }],
+        ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+        ['meta', { name: 'twitter:image', content: `${SITE}/art/og.png` }],
     ],
 
     themeConfig: {
